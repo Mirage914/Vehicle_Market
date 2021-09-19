@@ -15,6 +15,7 @@ namespace Project1.Controllers
 {
     public class AccountController : Controller
     {
+        public bool IsLogin = false;
         private readonly Project1Context obj;
         public AccountController(Project1Context context)
         {
@@ -57,6 +58,7 @@ namespace Project1.Controllers
         {
             if (account.UserName == null || account.Password == null)
             {
+
                 return View();
             }
             var user = obj.Account.Where(x => x.UserName == account.UserName && x.Password == account.Password).FirstOrDefault();

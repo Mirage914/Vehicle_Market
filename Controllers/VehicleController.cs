@@ -46,7 +46,11 @@ namespace Project1.Controllers
         // GET: Cars/Create
         public IActionResult Create()
         {
+
             return View();
+
+
+
         }
 
         // POST: Cars/Create
