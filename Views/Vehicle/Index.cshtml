@@ -3,33 +3,39 @@
 @{
     ViewData["Title"] = "Index";
 }
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Vehicle.css">
+</head>
 
-<h1>Index</h1>
+<h1>Vehicle</h1>
 
-<p>
-    <a asp-action="Create">Create New Vehicle</a>
-</p>
-<table  class="table" >
-    <thead>
-        <tr>
-            <th >                
-                Brand
-            </th>
-            <th>
-                Model
-            </th>
-            <th>
-                Production Date
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
+<body>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+            <div class="col-lg-4">
+                <div class="card">
+                    <a asp-action="Details" asp-route-id="@item.ID">
+                        <img src="~/Images/Fiar.jpg" alt=@Html.DisplayFor(modelItem => item.CarBrand)@Html.DisplayFor(modelItem => item.CarModel) style="width:100%" />
+                        <h4><b>@Html.DisplayFor(modelItem => item.CarBrand) @Html.DisplayFor(modelItem => item.CarModel)</b></h4>
+                        <p style="font-size:13px">Drive away from</p>
+                        <b>@Html.DisplayFor(modelItem => item.Price)$</b>
+                        <p style="font-size">Production Date @Html.DisplayFor(modelItem => item.ProductionDate)</p>
+                    </a>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</body>
+
+
+
+
+
+        @*<tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CarBrand)
             </td>
@@ -42,12 +48,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            <td>*@
+        @*<a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>*@
+  
+
+
+

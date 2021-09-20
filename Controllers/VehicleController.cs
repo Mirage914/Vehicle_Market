@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Project1.Data;
 using Project1.Models;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace Project1.Controllers
 {
@@ -60,6 +62,7 @@ namespace Project1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,CarBrand,CarModel,ProductionDate,Price")] Vehicle vehicle)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(vehicle);
@@ -68,7 +71,7 @@ namespace Project1.Controllers
             }
             return View(vehicle);
         }
-
+     
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

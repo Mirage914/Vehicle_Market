@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Project1.Models;
 using System;
@@ -11,11 +12,19 @@ namespace Project1.Controllers
 {
     public class HomeController : Controller
     {
+        public string FileName { get; set; }
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+        public void OnGet()
+        {
+        }
+        public void OnPost(IFormFile file)
+        {
+            FileName = file.FileName;
         }
 
         public IActionResult Index()

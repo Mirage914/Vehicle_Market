@@ -4,35 +4,35 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1> @Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)</h1>
 
 <div>
-    <h4>Cars</h4>
+    <img src="~/Images/Fiar.jpg" alt="@Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)"/>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CarBrand)
+            <p>Vehicle</p>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CarBrand)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CarModel)
+            <p>Model</p>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CarModel)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductionDate)
+            <p>Production Date</p>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ProductionDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            Price
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
+            @Html.DisplayFor(model => model.Price)$
         </dd>
     </dl>
 </div>
