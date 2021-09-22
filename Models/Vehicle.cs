@@ -10,11 +10,11 @@ namespace Project1.Models
     public class Vehicle
     {
         public int ID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vehicle Brand field is required.")]
         public string CarBrand { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vehicle Model field is required.")]
         public string CarModel { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Production Date field is required.")]
         public string ProductionDate { get; set; }
         [Required]
         public double Price { get; set; }
