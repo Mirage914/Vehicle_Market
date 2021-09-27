@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Project1.Data;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Project1
 {
@@ -29,6 +31,10 @@ namespace Project1
 
             services.AddDbContext<Project1Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Project1Context")));
+
+            services.AddSingleton<IFileProvider>(
+            new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

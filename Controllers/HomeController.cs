@@ -5,6 +5,7 @@ using Project1.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,11 +23,6 @@ namespace Project1.Controllers
         public void OnGet()
         {
         }
-        public void OnPost(IFormFile file)
-        {
-            FileName = file.FileName;
-        }
-
         public IActionResult Index()
         {
             return View();

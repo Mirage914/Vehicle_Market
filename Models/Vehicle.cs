@@ -19,5 +19,6 @@ namespace Project1.Models
         [Required]
         public double Price { get; set; }
 
+
     }
 }
