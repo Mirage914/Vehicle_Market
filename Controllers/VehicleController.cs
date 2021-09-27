@@ -61,7 +61,7 @@ namespace Project1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CarBrand,CarModel,ProductionDate,Price")] Vehicle vehicle,VehicleView_Model _vehicle)
+        public async Task<IActionResult> Create([Bind("CarBrand,CarModel,ProductionDate,Price,ImageName")] Vehicle vehicle,VehicleView_Model _vehicle)
         {
             _vehicle.CarBrand = vehicle.CarBrand;
             _vehicle.CarModel = vehicle.CarModel;
@@ -71,8 +71,9 @@ namespace Project1.Controllers
             if (file == null || file.Length== 0)
                 return Content("file not selected");
 
+            vehicle.ImageName = file.FileName;
             var path = Path.Combine(
-                        Directory.GetCurrentDirectory(), "wwwroot",
+                        Directory.GetCurrentDirectory(), "wwwroot/Images",
                          file.FileName);
 
             using (var stream = new FileStream(path, FileMode.Create))

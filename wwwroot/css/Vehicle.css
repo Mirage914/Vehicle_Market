@@ -1,8 +1,13 @@
-﻿h1 {
+﻿body {
+    background-color: #f2f2f2;
+}
+h1 {
     text-align: center;
 }
 img {
     border-radius: 8px;
+    max-width: 100%;
+    height: auto;
 }
 .column {
     float: left;
@@ -12,7 +17,7 @@ img {
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
-    margin:auto;
+    margin: auto;
     text-align: center;
 }
 .container {

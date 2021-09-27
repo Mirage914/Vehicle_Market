@@ -19,6 +19,8 @@ namespace Project1.Models
         [Required]
         public double Price { get; set; }
 
+        public string ImageName { get; set; }
+
 
     }
 }
