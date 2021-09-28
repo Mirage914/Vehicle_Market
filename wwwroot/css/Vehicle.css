@@ -6,22 +6,23 @@ h1 {
 }
 img {
     border-radius: 8px;
-    max-width: 100%;
-    height: auto;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
 }
 .column {
     float: left;
-    width: 25%;
+    width: 20%;
     padding: 0 10px;
 }
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
-}
 .container {
-    padding: 6px 13px;
+    padding: 2px 16px;
 }
+p {
+    margin: 0
+}
+
+
 
 

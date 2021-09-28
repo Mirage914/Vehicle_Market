@@ -42,7 +42,7 @@ namespace Project1.Controllers
             var user = obj.Account.Where(x => x.UserName == account.UserName).FirstOrDefault();
             if (user != null)
             {
-                ViewBag.message = "Account Already Exist";
+                ViewBag.message = "Account with this username already exist";
                 return View();
             }
             else if (ModelState.IsValid)

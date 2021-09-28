@@ -8,6 +8,7 @@ namespace Project1.Models
 {
     public class VehicleView_Model
     {
+        public int ID { get; set; }
         public string CarBrand { get; set; }
 
         public string CarModel { get; set; }
