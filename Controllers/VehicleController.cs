@@ -29,7 +29,7 @@ namespace Project1.Controllers
         }
 
         // GET: Cars/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, VehicleView_Model _vehicle)
         {
             if (id == null)
             {
@@ -37,13 +37,18 @@ namespace Project1.Controllers
             }
 
             var cars = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.ID == id);
+               .FirstOrDefaultAsync(m => m.ID == id);
+            _vehicle.CarBrand = cars.CarBrand;
+            _vehicle.CarModel = cars.CarModel;
+            _vehicle.Price = cars.Price;
+            _vehicle.ProductionDate = cars.ProductionDate;
+            _vehicle.ImageName = cars.ImageName;
             if (cars == null)
             {
                 return NotFound();
             }
 
-            return View(cars);
+            return View(_vehicle);
         }
 
         // GET: Cars/Create
@@ -61,14 +66,14 @@ namespace Project1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Vehicle vehicle,VehicleView_Model _vehicle)
+        public async Task<IActionResult> Create(Vehicle vehicle, VehicleView_Model _vehicle)
         {
             vehicle.CarModel = _vehicle.CarModel;
             vehicle.CarBrand = _vehicle.CarBrand;
             vehicle.ProductionDate = _vehicle.ProductionDate;
             vehicle.Price = _vehicle.Price;
             var file = _vehicle.Image;
-            if (file == null || file.Length== 0)
+            if (file == null || file.Length == 0)
                 return Content("file not selected");
 
             vehicle.ImageName = file.FileName;
@@ -88,7 +93,7 @@ namespace Project1.Controllers
             }
             return View(_vehicle);
         }
-     
+
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -101,7 +106,8 @@ namespace Project1.Controllers
             _vehicle.CarBrand = vehicle.CarBrand;
             _vehicle.CarModel = vehicle.CarModel;
             _vehicle.Price = vehicle.Price;
-            _vehicle.ProductionDate = vehicle.ProductionDate;           
+            _vehicle.ProductionDate = vehicle.ProductionDate;
+            _vehicle.ImageName = vehicle.ImageName;
             if (_vehicle == null)
             {
                 return NotFound();
@@ -115,7 +121,7 @@ namespace Project1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,Vehicle vehicle,VehicleView_Model _vehicle)
+        public async Task<IActionResult> Edit(int id, Vehicle vehicle, VehicleView_Model _vehicle)
         {
             vehicle.ID = _vehicle.ID;
             vehicle.CarModel = _vehicle.CarModel;
@@ -125,7 +131,7 @@ namespace Project1.Controllers
             var file = _vehicle.Image;
             if (file == null || file.Length == 0)
                 return Content("file not selected");
-            
+
             vehicle.ImageName = file.FileName;
             var path = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot/Images",
@@ -133,7 +139,7 @@ namespace Project1.Controllers
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
-            }           
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -181,13 +187,13 @@ namespace Project1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            
+
             var cars = await _context.Vehicle.FindAsync(id);
             var path = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot/Images",
                          cars.ImageName);
             System.IO.File.Delete(path);
-            _context.Vehicle.Remove(cars);           
+            _context.Vehicle.Remove(cars);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -11,49 +11,25 @@
     <h1>Vehicle</h1>
     <div class="row">
         @foreach (var item in Model)
-        {       
-        <div class="column">
-            <div class="container">
-                <div class="card">
-                    <img src="~/Images/@Html.DisplayFor(modelItem => item.ImageName)" alt=@Html.DisplayFor(modelItem => item.ImageName) />
-                    <a asp-action="Details" asp-route-id="@item.ID">
-                        <p style="font-size: 16px;">
-                            @Html.DisplayFor(modelItem => item.CarBrand) @Html.DisplayFor(modelItem => item.CarModel)
-                        </p>
-                        <p style="font-weight: bold; font-size:18px">@Html.DisplayFor(modelItem => item.Price)$</p>
-                        <p align="right" style="font-size:12px">@Html.DisplayFor(modelItem => item.ProductionDate)</p>
-                    </a>
+        {
+            <div class="column">
+                <div class="container">
+                    <div class="card">
+                        <img class="card card-img-top" src="~/Images/@Html.DisplayFor(modelItem => item.ImageName)" alt=@Html.DisplayFor(modelItem => item.ImageName) />
+                        <a asp-action="Details" asp-route-id="@item.ID">
+                            <p style="font-size: 16px;">
+                                @Html.DisplayFor(modelItem => item.CarBrand) @Html.DisplayFor(modelItem => item.CarModel)
+                            </p>
+                            <p style="font-weight: bold; font-size:18px">@Html.DisplayFor(modelItem => item.Price)$</p>
+                            <p align="right" style="font-size:12px">@Html.DisplayFor(modelItem => item.ProductionDate)</p>
+                        </a>
+                    </div>
                 </div>
-        </div>
-        </div>
+            </div>
         }
     </div>
 </body>
 </html>
-
-
-
-
-
-@*<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.CarBrand)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CarModel)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProductionDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Price)
-    </td>
-    <td>*@
-@*<a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-        </td>
-    </tr>*@
 
 
 

@@ -17,6 +17,7 @@ namespace Project1.Models
 
         public double Price { get; set; }
         public IFormFile Image { get; set; }
+        public string ImageName { get; set; }
 
     }
 }
