@@ -61,12 +61,12 @@ namespace Project1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CarBrand,CarModel,ProductionDate,Price,ImageName")] Vehicle vehicle,VehicleView_Model _vehicle)
+        public async Task<IActionResult> Create(Vehicle vehicle,VehicleView_Model _vehicle)
         {
-            _vehicle.CarBrand = vehicle.CarBrand;
-            _vehicle.CarModel = vehicle.CarModel;
-            _vehicle.ProductionDate = vehicle.ProductionDate;
-            _vehicle.Price = vehicle.Price;
+            vehicle.CarModel = _vehicle.CarModel;
+            vehicle.CarBrand = _vehicle.CarBrand;
+            vehicle.ProductionDate = _vehicle.ProductionDate;
+            vehicle.Price = _vehicle.Price;
             var file = _vehicle.Image;
             if (file == null || file.Length== 0)
                 return Content("file not selected");
@@ -86,23 +86,28 @@ namespace Project1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            return View(_vehicle);
         }
      
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            VehicleView_Model _vehicle = new VehicleView_Model();
             if (id == null)
             {
                 return NotFound();
             }
-
-            var cars = await _context.Vehicle.FindAsync(id);
-            if (cars == null)
+            var vehicle = await _context.Vehicle.FindAsync(id);
+            _vehicle.CarBrand = vehicle.CarBrand;
+            _vehicle.CarModel = vehicle.CarModel;
+            _vehicle.Price = vehicle.Price;
+            _vehicle.ProductionDate = vehicle.ProductionDate;           
+            if (_vehicle == null)
             {
                 return NotFound();
             }
-            return View(cars);
+
+            return View(_vehicle);
         }
 
         // POST: Cars/Edit/5
@@ -110,13 +115,25 @@ namespace Project1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CarBrand,CarModel,ProductionDate,Price")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id,Vehicle vehicle,VehicleView_Model _vehicle)
         {
-            if (id != vehicle.ID)
+            vehicle.ID = _vehicle.ID;
+            vehicle.CarModel = _vehicle.CarModel;
+            vehicle.CarBrand = _vehicle.CarBrand;
+            vehicle.ProductionDate = _vehicle.ProductionDate;
+            vehicle.Price = _vehicle.Price;
+            var file = _vehicle.Image;
+            if (file == null || file.Length == 0)
+                return Content("file not selected");
+            
+            vehicle.ImageName = file.FileName;
+            var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot/Images",
+                         file.FileName);
+            using (var stream = new FileStream(path, FileMode.Create))
             {
-                return NotFound();
-            }
-
+                await file.CopyToAsync(stream);
+            }           
             if (ModelState.IsValid)
             {
                 try
@@ -137,12 +154,13 @@ namespace Project1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            return View(_vehicle);
         }
 
         // GET: Cars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
@@ -163,8 +181,13 @@ namespace Project1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            
             var cars = await _context.Vehicle.FindAsync(id);
-            _context.Vehicle.Remove(cars);
+            var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot/Images",
+                         cars.ImageName);
+            System.IO.File.Delete(path);
+            _context.Vehicle.Remove(cars);           
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

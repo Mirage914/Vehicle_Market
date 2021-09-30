@@ -1,7 +1,8 @@
-﻿@model Project1.Models.Vehicle
-
+﻿@model Project1.Models.VehicleView_Model
 @{
     ViewData["Title"] = "Edit";
+   
+
 }
 
 <h1>Edit</h1>
@@ -10,39 +11,45 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="ID" />
-                <div class="form-group">
-                    <label asp-for="CarBrand" class="control-label"></label>
-                    <input asp-for="CarBrand" class="form-control" />
-                    <span asp-validation-for="CarBrand" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CarModel" class="control-label"></label>
-                    <input asp-for="CarModel" class="form-control" />
-                    <span asp-validation-for="CarModel" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ProductionDate" class="control-label"></label>
-                    <input asp-for="ProductionDate" type="date" class="form-control" />
-                    <span asp-validation-for="ProductionDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Price" class="control-label"></label>
-                    <input asp-for="Price" class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <img src="~/Images/@Html.DisplayFor(model=> model.Image.FileName)">
+            <div class="form-group">
+                <label asp-for="CarBrand" class="control-label"></label>
+                <input asp-for="CarBrand" class="form-control" />
+                <span asp-validation-for="CarBrand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarModel" class="control-label"></label>
+                <input asp-for="CarModel" class="form-control" />
+                <span asp-validation-for="CarModel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductionDate" class="control-label"></label>
+                <input asp-for="ProductionDate" type="date" class="form-control" />
+                <span asp-validation-for="ProductionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Image" type="file" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="ID" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-action="Index">Back to List</a>
+</form>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

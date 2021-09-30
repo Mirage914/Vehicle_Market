@@ -7,7 +7,7 @@
 <h1> @Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)</h1>
 
 <div>
-    <img src="~/Images/@Html.DisplayFor(model=> model.ImageName)" alt="@Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)" style="width:300px;height:400px;" />
+    <img src="~/Images/@Model.ImageName" alt="@Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)" style="width:300px;height:400px;" />
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
