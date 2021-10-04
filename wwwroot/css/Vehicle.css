@@ -1,5 +1,6 @@
 ﻿body {
     background-color: #f2f2f2;
+    margin-bottom: 60px;
 }
 
 h1 {
@@ -10,8 +11,25 @@ img {
     border-radius: 8px;
     width: 200px;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
 }
+
+.centerText {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-bottom:20px;
+}
+.centerImg {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+
+
 
 a:hover {
     color: black;

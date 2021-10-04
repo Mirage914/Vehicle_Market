@@ -31,15 +31,17 @@ namespace Project1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(Account account)
+        public IActionResult Register(Account account,AccountViewModel _account)
         {
-            
-            if (account.UserName == null || account.Password == null)
+
+            if (_account.UserName == null || _account.Password == null)
             {
                 return View();
 
             }
-            var user = obj.Account.Where(x => x.UserName == account.UserName).FirstOrDefault();
+            account.UserName = _account.UserName;
+            account.Password = _account.Password;
+            var user = obj.Account.Where(x => x.UserName == _account.UserName).FirstOrDefault();
             if (user != null)
             {
                 ViewBag.message = "Account with this username already exist";
@@ -61,13 +63,16 @@ namespace Project1.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(Account account)
+        public IActionResult Login(AccountViewModel _account,Account account)
         {
-            if (account.UserName == null || account.Password == null)
+
+            if (_account.UserName == null || _account.Password == null)
             {
 
                 return View();
             }
+            account.UserName = _account.UserName;
+            account.Password = _account.Password;
             var user = obj.Account.Where(x => x.UserName == account.UserName && x.Password == account.Password).FirstOrDefault();
             if (user == null)
             {

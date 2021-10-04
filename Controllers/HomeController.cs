@@ -28,7 +28,7 @@ namespace Project1.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult BestCarMagazine()
         {
             return View();
         }
