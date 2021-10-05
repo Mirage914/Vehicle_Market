@@ -23,9 +23,28 @@ namespace Project1.Controllers
         }
 
         // GET: Cars
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Vehicle.ToListAsync());
+            ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+            var vehicles = from v in _context.Vehicle
+                           select v;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                vehicles = vehicles.Where(v => v.CarBrand.Contains(searchString)
+                  || v.CarModel.Contains(searchString));
+
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.CarBrand);
+                    break;
+                default:
+                    vehicles = vehicles.OrderBy(v => v.CarBrand);
+                    break;
+            }
+            return View(await vehicles.AsNoTracking().ToListAsync());
         }
 
         // GET: Cars/Details/5

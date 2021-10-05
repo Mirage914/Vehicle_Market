@@ -15,7 +15,7 @@ using Project1.Models;
 namespace Project1.Controllers
 {
     public class AccountController : Controller
-    {        
+    {
         private readonly Project1Context obj;
         public AccountController(Project1Context context)
         {
@@ -31,7 +31,7 @@ namespace Project1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(Account account,AccountViewModel _account)
+        public IActionResult Register(Account account, AccountViewModel _account)
         {
 
             if (_account.UserName == null || _account.Password == null)
@@ -63,7 +63,7 @@ namespace Project1.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(AccountViewModel _account,Account account)
+        public IActionResult Login(AccountViewModel _account, Account account)
         {
 
             if (_account.UserName == null || _account.Password == null)
