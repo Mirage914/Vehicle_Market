@@ -36,6 +36,8 @@ img {
     font-family: "Times New Roman", Times, serif;
 }
 
+
+
 .centerImg {
     border-radius: 8px;
     float: left;
@@ -66,3 +68,18 @@ a:hover {
 p {
     margin: 0;
 }
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 45px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+

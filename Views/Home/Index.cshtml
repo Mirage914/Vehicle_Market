@@ -1,10 +1,25 @@
-﻿@{
+﻿@model IEnumerable<Project1.Models.Vehicle>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h class="display-4">Welcome</h>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Vehicle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+</head>
+<body>
+    <div class="text-center">
+        <h class="display-4">Welcome</h>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+    <div class="form-group" style="">
+        <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceFilter"]">@Html.DisplayNameFor(model => model.Price)</a>
+    </div>
+</body>
+</html>
+
+
 
 

@@ -6,19 +6,35 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/css/Vehicle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 </head>
 <body>
     <h1>Vehicle</h1>
-    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]">@Html.DisplayNameFor(model => model.CarBrand)</a>
-    <form asp-action="Index" method="get">
-        <div class="form-actions no-color">
-            <p>
-                <input type="text" placeholder="Search.." name="SearchString" value="@ViewData["CurrentFilter"]" />
-                <input type="submit" value="Search" class="btn btn-light" /> |
-                <a asp-action="Index">Back to Full List</a>
-            </p>
-        </div>
-    </form>
+    <div>
+        <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]">@Html.DisplayNameFor(model => model.CarBrand)</a>
+        <form asp-action="Index" method="get" style="text-align:right">
+            <div class="form-actions no-color">
+                <p>
+                    <input type="text" placeholder="Search.." name="SearchString" value="@ViewData["CurrentFilter"]" />
+                    <input type="submit" value="Search" class="btn btn-light" /> |
+                    <a asp-action="Index">Back to Full List</a>
+                </p>
+            </div>
+        </form>
+        <form asp-action="Index" method="get" style="text-align:left;">
+            <div class="form-actions no-color">
+                <p>
+                    <input type="text" placeholder="Max price" name="MaxPrice" value="@ViewData["Max"]" />
+                    <input type="text" placeholder="Min price" name="MinPrice" value="@ViewData["Min"]" />
+                    <input type="submit" value="Filter" class="btn btn-light" />
+                </p>
+            </div>
+
+        </form>
+    </div>
+    
+
     <div class="row">
         @foreach (var item in Model)
         {
@@ -38,6 +54,11 @@
             </div>
         }
     </div>
+
+    <button class="btn" onclick="topFunction()" id="myBtn" title="Go to top"><i class='fas fa-angle-double-up' style="color:dimgray"></i></button>
+
+    <script src="~/js/UpButton.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </body>
 </html>
 

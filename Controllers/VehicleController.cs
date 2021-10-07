@@ -23,18 +23,24 @@ namespace Project1.Controllers
         }
 
         // GET: Cars
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString,string MaxPrice,string MinPrice)
         {
             ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["CurrentFilter"] = searchString;
+            ViewData["Max"] = MaxPrice;
+            ViewData["Min"] = MinPrice;
             var vehicles = from v in _context.Vehicle
                            select v;
+            if (MinPrice!="0"&& Convert.ToInt32(MaxPrice) > Convert.ToInt32(MinPrice))
+            {
+                vehicles = vehicles.Where(v => v.Price>=Convert.ToInt32(MinPrice) && v.Price< Convert.ToInt32(MaxPrice));
+            }
             if (!String.IsNullOrEmpty(searchString))
             {
                 vehicles = vehicles.Where(v => v.CarBrand.Contains(searchString)
                   || v.CarModel.Contains(searchString));
 
-            }
+            }           
             switch (sortOrder)
             {
                 case "name_desc":
