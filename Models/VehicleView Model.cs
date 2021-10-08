@@ -19,7 +19,6 @@ namespace Project1.Models
         [Required]
         public double Price { get; set; }
 
-        [Required(ErrorMessage = "Please select a image.")]
         public IFormFile Image { get; set; }
         public string ImageName { get; set; }
 

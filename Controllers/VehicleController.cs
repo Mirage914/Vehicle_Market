@@ -31,9 +31,22 @@ namespace Project1.Controllers
             ViewData["Min"] = MinPrice;
             var vehicles = from v in _context.Vehicle
                            select v;
-            if (MinPrice!="0"&& Convert.ToInt32(MaxPrice) > Convert.ToInt32(MinPrice))
+            try
             {
-                vehicles = vehicles.Where(v => v.Price>=Convert.ToInt32(MinPrice) && v.Price< Convert.ToInt32(MaxPrice));
+                if (MinPrice != "0" && Convert.ToInt32(MaxPrice) > Convert.ToInt32(MinPrice))
+                {
+                    vehicles = vehicles.Where(v => v.Price >= Convert.ToInt32(MinPrice) && v.Price < Convert.ToInt32(MaxPrice));
+                }
+                else if (MinPrice !="0")
+                {                  
+                    vehicles = vehicles.Where(v => v.Price >= Convert.ToInt32(MinPrice));
+                }
+            }
+            catch (Exception )
+            {
+
+                ViewBag.MyErrorMessage = "Please insert number";
+                return View(await vehicles.AsNoTracking().ToListAsync());
             }
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -153,18 +166,23 @@ namespace Project1.Controllers
             vehicle.CarBrand = _vehicle.CarBrand;
             vehicle.ProductionDate = _vehicle.ProductionDate;
             vehicle.Price = _vehicle.Price;
-            var file = _vehicle.Image;
-            if (file == null || file.Length == 0)
-                return Content("file not selected");
-
-            vehicle.ImageName = file.FileName;
-            var path = Path.Combine(
-                        Directory.GetCurrentDirectory(), "wwwroot/Images",
-                         file.FileName);
-            using (var stream = new FileStream(path, FileMode.Create))
+            vehicle.ImageName = _vehicle.ImageName;
+            if (_vehicle.Image!=null)
             {
-                await file.CopyToAsync(stream);
-            }
+                var file = _vehicle.Image;
+                if (file == null || file.Length == 0)
+                {
+                    return View(_vehicle);
+                }
+                vehicle.ImageName = file.FileName;
+                var path = Path.Combine(
+                       Directory.GetCurrentDirectory(), "wwwroot/Images",
+                        file.FileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }                    
             if (ModelState.IsValid)
             {
                 try

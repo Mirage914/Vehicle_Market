@@ -12,29 +12,35 @@
 <body>
     <h1>Vehicle</h1>
     <div>
-        <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]">@Html.DisplayNameFor(model => model.CarBrand)</a>
-        <form asp-action="Index" method="get" style="text-align:right">
+        <form asp-action="Index" method="get" style="text-align:center">
             <div class="form-actions no-color">
                 <p>
-                    <input type="text" placeholder="Search.." name="SearchString" value="@ViewData["CurrentFilter"]" />
+                    <input type="text" size="40" placeholder="Search.." name="SearchString" value="@ViewData["CurrentFilter"]" />
                     <input type="submit" value="Search" class="btn btn-light" /> |
                     <a asp-action="Index">Back to Full List</a>
                 </p>
             </div>
         </form>
         <form asp-action="Index" method="get" style="text-align:left;">
-            <div class="form-actions no-color">
+            <div>
                 <p>
-                    <input type="text" placeholder="Max price" name="MaxPrice" value="@ViewData["Max"]" />
-                    <input type="text" placeholder="Min price" name="MinPrice" value="@ViewData["Min"]" />
+                    <input type="text" size="6" placeholder="Max price" name="MaxPrice" value="@ViewData["Max"]" />
+                    <input type="text" size="6" placeholder="Min price" name="MinPrice" value="@ViewData["Min"]" />
                     <input type="submit" value="Filter" class="btn btn-light" />
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]">A-Z</a>
+                    @if (ViewBag.MyErrorMessage != null)
+                    {
+                        <div class="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            <strong>Error! </strong>@ViewBag.MyErrorMessage
+                        </div>
+                    }
                 </p>
             </div>
 
+
         </form>
     </div>
-    
-
     <div class="row">
         @foreach (var item in Model)
         {
@@ -56,11 +62,11 @@
     </div>
 
     <button class="btn" onclick="topFunction()" id="myBtn" title="Go to top"><i class='fas fa-angle-double-up' style="color:dimgray"></i></button>
-
     <script src="~/js/UpButton.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </body>
 </html>
+
 
 
 
