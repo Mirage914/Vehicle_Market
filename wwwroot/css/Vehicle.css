@@ -47,7 +47,9 @@ img {
     padding-right: 15px;
     margin-top: 10px;
 }
-
+.inputSize {
+    width: 100px;
+}
 
 
 
@@ -81,5 +83,6 @@ p {
     border-radius: 10px;
     font-size: 18px;
 }
+
 
 

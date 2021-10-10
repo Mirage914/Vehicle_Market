@@ -10,28 +10,20 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 </head>
 <body>
-    <h1>Vehicle</h1>
+    <h1 style="padding-bottom:20px;">Vehicle</h1>
     <div>
-        <form asp-action="Index" method="get" style="text-align:center">
-            <div class="form-actions no-color">
-                <p>
-                    <input type="text" size="40" placeholder="Search.." name="SearchString" value="@ViewData["CurrentFilter"]" />
-                    <input type="submit" value="Search" class="btn btn-light" /> |
-                    <a asp-action="Index">Back to Full List</a>
-                </p>
-            </div>
-        </form>
         <form asp-action="Index" method="get" style="text-align:left;">
-            <div>
-                <p>
-                    <input type="number" size="6" placeholder="Max price" name="MaxPrice" value="@ViewData["Max"]" />
-                    <input type="number" size="6" placeholder="Min price" name="MinPrice" value="@ViewData["Min"]" />
-                    <input type="submit" value="Filter" class="btn btn-light" />
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]">A-Z</a>
+            <div style="padding-bottom:5px">
+                <p style="text-align:right;">
+                    <input type="text" size="25" placeholder="Search.." name="SearchString" value="@ViewData["CurrentFilter"]" />
+                    <input type="submit" value="Search" class="btn btn-primary" /> |
+                    <a style="padding-right:75px" asp-action="Index">Back to Full List</a>
+                    <a style="padding-right:255px" asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]">A-Z</a>
+                    <input class="inputSize" type="number" placeholder="Max price" name="MaxPrice" value="@ViewData["Max"]" />
+                    <input class="inputSize" type="number" placeholder="Min price" name="MinPrice" value="@ViewData["Min"]" />
+                    <input style="margin-right:10px;" type="submit" value="Filter" class="btn btn-primary" />
                 </p>
             </div>
-
-
         </form>
     </div>
     <div class="row">
@@ -45,7 +37,7 @@
                             <p style="font-size: 16px;">
                                 @Html.DisplayFor(modelItem => item.CarBrand) @Html.DisplayFor(modelItem => item.CarModel)
                             </p>
-                            <p style="font-weight: bold; font-size:18px">@Html.DisplayFor(modelItem => item.Price)$</p>
+                            <p style="font-weight: bold; font-size:18px">@Html.DisplayFor(modelItem => item.Price) €</p>
                             <p align="right" style="font-size:12px">@Html.DisplayFor(modelItem => item.ProductionDate)</p>
                         </a>
                     </div>

@@ -5,56 +5,56 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/css/Vehicle.css">
+    <link rel="stylesheet" href="~/css/SingUp.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 </head>
 <body>
-    <h1>Create New Vehicle</h1>
-
-    <h4>Add Car</h4>
     <hr />
     <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label class="control-label">Vehicle Brand</label>
-                    <input asp-for="CarBrand" class="form-control" />
-                    <span asp-validation-for="CarBrand" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label"> Vehicle Model</label>
-                    <input asp-for="CarModel" class="form-control" />
-                    <span asp-validation-for="CarModel" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Production Date</label>
-                    <input asp-for="ProductionDate" type="date" class="form-control" />
-                    <span asp-validation-for="ProductionDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Price" class="control-label"></label>
-                    <input asp-for="Price" class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input asp-for="Image" type="file" multiple />
-                    <span asp-validation-for="Image" class="text-danger"></span>
-                </div>
-                @if (ViewBag.ErrorCreate != null)
-                {
-                    <div class="alert">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        @ViewBag.ErrorCreate
+        <div class="center">
+            <div class="form" style="height:610px;">
+                <div class="title" style="padding-bottom:20px;">Create New Vehicle</div>
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label" style="color:white;">Vehicle Brand</label>
+                        <input asp-for="CarBrand" class="form-control" />
+                        <span asp-validation-for="CarBrand" class="text-danger"></span>
                     </div>
-                }
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
+                    <div class="form-group">
+                        <label class="control-label" style="color:white;"> Vehicle Model</label>
+                        <input asp-for="CarModel" class="form-control" />
+                        <span asp-validation-for="CarModel" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" style="color:white;">Production Date</label>
+                        <input asp-for="ProductionDate" type="date" class="form-control" />
+                        <span asp-validation-for="ProductionDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label" style="color:white;"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Image" type="file" style="color:white;" multiple />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                    @if (ViewBag.ErrorCreate != null)
+                    {
+                        <div class="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            @ViewBag.ErrorCreate
+                        </div>
+                    }
+                    <div class="form-group">
+                        <input type="submit" value="Create" style="width:90px;" class="btn btn-primary" />
+                        <a style="color:white;margin-left:10px;" asp-action="Index">Back to List</a>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
     </div>
 
 

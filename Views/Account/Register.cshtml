@@ -7,28 +7,36 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/css/Vehicle.css">
+    <link rel="stylesheet" href="~/css/SingUp.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 </head>
 <body>
-    <h1>Register Account</h1>
-    <hr />
     <div class="row">
-        <div class="col-md-4">
-            <form asp-controller="Account" asp-action="Index">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="UserName" class="control-label">Username</label>
-                    <input asp-for="UserName" placeholder="Enter Username" class="form-control" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="control-label"></label>
-                    <input asp-for="Password" placeholder="Enter Password" class="form-control" type="password" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Register" class="btn btn-primary" asp-action="Register" />
-                </div>
-            </form>
+        <div class="center">
+            <div class="form">
+                <div class="title">Register</div>
+                <div class="subtitle">Let's create your account!</div>
+                <form asp-controller="Account" asp-action="Index">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div>
+                        <input class="form__input" asp-for="UserName" type="text" style="font-size:18px;" placeholder="Username">
+                        <span style="margin-left:20px;" asp-validation-for="UserName" class="text-white"></span>
+                    </div>
+                    <div class="group">
+                        <input class="form__input" asp-for="Password" type="password" style="font-size:18px;" placeholder="Password">
+                        <span style="margin-left:20px;" asp-validation-for="Password" class="text-white"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Register" class="btn_login" asp-action="Register" />
+                    </div>
+                    <div>
+                        <p class="text-white" style="text-align:center; font-size:16px;padding-top:30px;">Already have account?</p>
+                        <p style="text-align:center;"><a style="color:white" asp-action="Login"> Login </a></p>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
     @if (!string.IsNullOrEmpty(ViewBag.Message))

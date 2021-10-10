@@ -6,13 +6,18 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/css/Vehicle.css">
+    <link rel="stylesheet" href="~/css/ModalImage.css">
+
 </head>
 <body>
-
-    <h1> @Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)</h1>
-
     <div>
-        <img src="~/Images/@Html.DisplayFor(model => model.ImageName)" alt="@Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)" />
+        <h1> @Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)</h1>
+        <img class="imgDetails" id="myImg" src="~/Images/@Html.DisplayFor(model => model.ImageName)" alt="@Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)" />
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
+        </div>
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
@@ -45,5 +50,6 @@
         <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
         <a asp-action="Index">Back to List</a>
     </div>
+    <script src="~/js/Modal.js"></script>
 </body>
 </html>

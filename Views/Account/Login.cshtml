@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 </head>
 <body>
-    <hr />
     <div class="row">
         <div class="center">
             <div class="form">
                 <div class="title">Login</div>
-                <div class="subtitle">Let's create your account!</div>
+                <div class="subtitle">Do not have an account? </div>
                 <form asp-controller="Account" asp-action="Index">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div>
@@ -31,7 +30,8 @@
                         <input type="submit" value="Login" class="btn_login" asp-action="Login" />
                     </div>
                     <div>
-                        <p class="text-white" style="text-align:center; font-size:16px;padding-top:30px;">Not a member? SignUp now</p>
+                        <p class="text-white" style="text-align:center; font-size:16px;padding-top:30px;">Not a member?</p>
+                        <p style="text-align:center;"><a style="color:white" asp-action="Register"> Register </a></p>
                     </div>
                 </form>
             </div>
