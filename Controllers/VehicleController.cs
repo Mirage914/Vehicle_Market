@@ -31,29 +31,22 @@ namespace Project1.Controllers
             ViewData["Min"] = MinPrice;
             var vehicles = from v in _context.Vehicle
                            select v;
-            try
-            {
-                if (MinPrice != "0" && Convert.ToInt32(MaxPrice) > Convert.ToInt32(MinPrice))
-                {
-                    vehicles = vehicles.Where(v => v.Price >= Convert.ToInt32(MinPrice) && v.Price < Convert.ToInt32(MaxPrice));
-                }
-                else if (MinPrice !="0")
-                {                  
-                    vehicles = vehicles.Where(v => v.Price >= Convert.ToInt32(MinPrice));
-                }
-            }
-            catch (Exception )
-            {
 
-                ViewBag.MyErrorMessage = "Please insert number";
-                return View(await vehicles.AsNoTracking().ToListAsync());
+            if (MinPrice != "0" && Convert.ToInt32(MaxPrice) > Convert.ToInt32(MinPrice))
+            {
+                vehicles = vehicles.Where(v => v.Price >= Convert.ToInt32(MinPrice) && v.Price < Convert.ToInt32(MaxPrice));
             }
+            else if (MinPrice != "0")
+            {
+                vehicles = vehicles.Where(v => v.Price >= Convert.ToInt32(MinPrice));
+            }
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 vehicles = vehicles.Where(v => v.CarBrand.Contains(searchString)
                   || v.CarModel.Contains(searchString));
 
-            }           
+            }
             switch (sortOrder)
             {
                 case "name_desc":
@@ -112,8 +105,10 @@ namespace Project1.Controllers
             vehicle.Price = _vehicle.Price;
             var file = _vehicle.Image;
             if (file == null || file.Length == 0)
-                return Content("file not selected");
-
+            {
+                ViewBag.ErrorCreate = "You not select file.";
+                return View();
+            }
             vehicle.ImageName = file.FileName;
             var path = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot/Images",

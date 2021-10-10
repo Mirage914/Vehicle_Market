@@ -36,9 +36,16 @@
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Image" type="file" />
+                    <input asp-for="Image" type="file" multiple />
                     <span asp-validation-for="Image" class="text-danger"></span>
                 </div>
+                @if (ViewBag.ErrorCreate != null)
+                {
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        @ViewBag.ErrorCreate
+                    </div>
+                }
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
@@ -49,6 +56,7 @@
     <div>
         <a asp-action="Index">Back to List</a>
     </div>
+
 
 </body>
 </html>
