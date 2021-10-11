@@ -2,6 +2,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
+
 }
 
     #myImg:hover {
@@ -23,12 +24,14 @@
     background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
 
+
 .imgDetails {
-    margin-left: 330px;
-    margin-top: 10px;
+    margin-left: 25px;
+    margin-right: auto;
     border-radius: 8px;
     width: 450px;
     height: 450px;
+    padding-bottom: 20px;
     object-fit: contain;
 }
 

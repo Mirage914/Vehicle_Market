@@ -7,48 +7,34 @@
 <head>
     <link rel="stylesheet" href="~/css/Vehicle.css">
     <link rel="stylesheet" href="~/css/ModalImage.css">
-
+    <link rel="stylesheet" href="~/css/Form.css">
 </head>
 <body>
-    <div>
-        <h1> @Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)</h1>
-        <img class="imgDetails" id="myImg" src="~/Images/@Html.DisplayFor(model => model.ImageName)" alt="@Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)" />
-        <div id="myModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="img01">
-            <div id="caption"></div>
+    <div class="form">
+        <div>
+            <img class="imgDetails" id="myImg" src="~/Images/@Html.DisplayFor(model => model.ImageName)" alt="@Html.DisplayFor(model => model.CarBrand)  @Html.DisplayFor(model => model.CarModel)" />
+            <div id="myModal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="img01">
+                <div id="caption"></div>
+            </div>
+            <div class="title">@Html.DisplayFor(model => model.CarBrand) @Html.DisplayFor(model => model.CarModel)</div>
+            <hr />
+            <div>
+                <dl style="text-align:center;">
+                    <dt style="color: #333;">Brand</dt>
+                    <dd style="color:white;font-size:20px;">@Html.DisplayFor(model => model.CarBrand)</dd>
+                    <dt style="color: #333;">Model</dt>
+                    <dd style="color:white;font-size:20px;">@Html.DisplayFor(model => model.CarModel)</dd>
+                    <dt style="color: #333;">Price</dt>
+                    <dd style="color:white;font-size:20px;">@Html.DisplayFor(model => model.Price) €</dd>
+                    <dt style="color: #333;">Production Date</dt>
+                    <dd style="color:white;font-size:20px;">@Html.DisplayFor(model => model.ProductionDate) </dd>
+                </dl>
+            </div>
+            <a class="btn btn-primary" style="margin-left:20px;" asp-action="Edit" asp-route-id="@Model.ID">Edit</a>
+            <a class="btn btn-primary" asp-action="Index" style="margin-left:300px;">Back to list</a>
         </div>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                <p>Vehicle</p>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CarBrand)
-            </dd>
-            <dt class="col-sm-2">
-                <p>Model</p>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CarModel)
-            </dd>
-            <dt class="col-sm-2">
-                <p>Production Date</p>
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ProductionDate)
-            </dd>
-            <dt class="col-sm-2">
-                Price
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Price)$
-            </dd>
-        </dl>
-    </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-        <a asp-action="Index">Back to List</a>
     </div>
     <script src="~/js/Modal.js"></script>
 </body>

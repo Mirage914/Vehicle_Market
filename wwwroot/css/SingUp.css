@@ -32,7 +32,8 @@
 .btn_login {
     font-family: 'Roboto', sans-serif;
     padding-top: 15px;
-    font-size: 15px;
+    padding-bottom:10px;
+    font-size: 18px;
     margin-left: 20px;
     width: 90%;
     background-color: #4da6ff;
