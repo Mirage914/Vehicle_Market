@@ -34,7 +34,7 @@ namespace Project1
 
             services.AddSingleton<IFileProvider>(
             new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images")));
+                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
